@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulir Pendaftaran</title>
+    <style>
+        /* Animasi fade-in pada form dan navbar */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        /* Styling untuk Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            position: relative;
+            z-index: 1;
+            animation: slideIn 1s ease-out;
+        }
+
+        .navbar h2 {
+            color: #fff;
+            font-size: 24px;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+
+        .navbar a:hover {
+            color: #f0a500;
+        }
+
+        .navbar img {
+            height: 40px;
+            width: auto;
+            margin-right: 10px;
+        }
+
+        /* Styling untuk Latar Belakang */
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('Angelina Christy JKT48.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #fff;
+            animation: fadeIn 2s ease-out;
+            height: 100vh;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 0;
+            width: 100%;
+            height: 150%;
+        }
+
+        /* Styling untuk Form */
+        form {
+            background-color: rgba(34, 34, 34, 0.85);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 500px;
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 3s ease-out;
+        }
+
+        h1,
+        h2,
+        h4,
+        label {
+            color: #f4f4f9;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #555;
+            border-radius: 5px;
+            background-color: #444;
+            color: #fff;
+        }
+
+        input[type="submit"],
+        input[type="reset"],
+        .btn-login,
+        .btn-register {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            color: white;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+        }
+
+        input[type="reset"] {
+            background-color: #f44336;
+        }
+
+        .btn-login {
+            background-color: #2196F3;
+        }
+
+        .btn-register {
+            background-color: #f0a500;
+        }
+
+        input[type="submit"]:hover,
+        input[type="reset"]:hover,
+        .btn-login:hover,
+        .btn-register:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script>
+        // Fungsi validasi formulir dan mengirim data ke server
+        function validateForm() {
+            const nama = document.getElementById('txtnama').value;
+            const nomorTelpon = document.getElementById('txtnomortelpon').value;
+            const password = document.getElementById('txtpassword').value;
+            const gmail = document.getElementById('txtgmail').value;
+
+            // Validasi formulir
+            if (nama === "") {
+                alert("Nama lengkap harus diisi.");
+                return false;
+            }
+
+            if (isNaN(nomorTelpon) || nomorTelpon.length < 10) {
+                alert("Nomor telepon harus berisi angka dan minimal 10 digit.");
+                return false;
+            }
+
+            if (password.length < 6) {
+                alert("Password harus memiliki minimal 6 karakter.");
+                return false;
+            }
+
+            if (!gmail.includes("@")) {
+                alert("Masukkan alamat email yang valid.");
+                return false;
+            }
+
+            alert("Formulir Anda berhasil dikirim!");
+            return false; // Mencegah refresh halaman
+        }
+
+        function togglePassword() {
+            const passwordField = document.getElementById('txtpassword');
+            passwordField.type = passwordField.type === "password" ? "text" : "password";
+        }
+
+        // Fungsi untuk menyimpan data pendaftaran ke localStorage
+        function registerUser() {
+            const nama = document.getElementById('txtnama').value;
+            const nomorTelpon = document.getElementById('txtnomortelpon').value;
+            const password = document.getElementById('txtpassword').value;
+            const gmail = document.getElementById('txtgmail').value;
+
+            // Validasi formulir
+            if (nama === "" || nomorTelpon === "" || password === "" || gmail === "") {
+                alert("Semua kolom harus diisi.");
+                return false;
+            }
+
+            // Simpan data pengguna di localStorage
+            const userData = {
+                nama: nama,
+                nomorTelpon: nomorTelpon,
+                password: password,
+                gmail: gmail
+            };
+            localStorage.setItem("user", JSON.stringify(userData));
+
+            alert("Pendaftaran berhasil! Anda akan diarahkan ke halaman About.");
+
+            // Redirect ke halaman About.html setelah pendaftaran
+            window.location.href = 'About.html'; // Ganti dengan URL tujuan halaman About
+
+            // Reset form setelah pendaftaran
+            document.getElementById('registrationForm').reset();
+            return false; // Mencegah form dikirim
+        }
+
+        // Fungsi untuk login dan memverifikasi data
+        function loginUser() {
+            const gmail = document.getElementById('txtgmail').value;
+            const password = document.getElementById('txtpassword').value;
+
+            // Ambil data pengguna dari localStorage
+            const userData = JSON.parse(localStorage.getItem("user"));
+
+            // Cek kecocokan data login
+            if (userData && userData.gmail === gmail && userData.password === password) {
+                alert("Login berhasil! Selamat datang, " + userData.nama);
+                // Redirect ke halaman lain setelah login berhasil
+                window.location.href = 'About.html'; // Ganti dengan URL tujuan
+            } else {
+                alert("Gagal login. Periksa email dan password Anda.");
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <div class="overlay"></div>
+
+    <div class="navbar">
+        <!-- Logo di sebelah kiri -->
+        <img src="Logo shop.png" alt="Logo"> <!-- Ganti 'logo.png' dengan path logo Anda -->
+        <h2>Pendaftaran Website DIKY RIDHO</h2>
+        <div>
+            <a href="#">Home</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <button class="btn-login"
+            onclick="document.getElementById('registrationForm').style.display = 'none'; document.getElementById('loginForm').style.display = 'block';">Login</button>
+        <button class="btn-register"
+            onclick="document.getElementById('registrationForm').style.display = 'block'; document.getElementById('loginForm').style.display = 'none';">Daftar</button>
+    </div>
+
+    <!-- Formulir Pendaftaran -->
+    <form id="registrationForm" onsubmit="return registerUser()">
+        <h1><b>Isi Formulir di Bawah Ini</b></h1>
+        <hr>
+        <div class="form-group">
+            <label for="txtnama">Nama Lengkap:</label>
+            <input type="text" id="txtnama" name="txtnama" required>
+        </div>
+        <div class="form-group">
+            <label for="txtnomortelpon">Nomor Telepon:</label>
+            <input type="text" id="txtnomortelpon" name="txtnomortelpon" maxlength="12" required>
+        </div>
+        <div class="form-group">
+            <label for="txtgmail">Gmail:</label>
+            <input type="email" id="txtgmail" name="txtgmail" required>
+        </div>
+        <div class="form-group">
+            <label for="txtpassword">Password:</label>
+            <input type="password" id="txtpassword" name="txtpassword" maxlength="20" required>
+            <br>
+            <input type="checkbox" onclick="togglePassword()"> Tampilkan Password
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Daftar">
+            <input type="reset" value="Reset">
+        </div>
+    </form>
+
+    <!-- Formulir Login -->
+    <form id="loginForm" onsubmit="return loginUser()" style="display: none;">
+        <h1><b>Form Login</b></h1>
+        <hr>
+        <div class="form-group">
+            <label for="txtgmail">Gmail:</label>
+            <input type="email" id="txtgmail" name="txtgmail" required>
+        </div>
+        <div class="form-group">
+            <label for="txtpassword">Password:</label>
+            <input type="password" id="txtpassword" name="txtpassword" required>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Login">
+        </div>
+    </form>
+
+</body>
+
+</html>

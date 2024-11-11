@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Diri - Diky Ridho Pamungkas</title>
+    <style>
+        /* Animasi fade-in pada form dan navbar */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        /* Styling untuk Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            position: relative;
+            z-index: 1;
+            animation: slideIn 1s ease-out;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar h2 {
+            color: #fff;
+            margin: 0;
+            font-size: 24px;
+            text-shadow: 1px 1px 3px #000;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            text-shadow: 1px 1px 3px #000;
+        }
+
+        .navbar a:hover {
+            color: #f0a500;
+        }
+
+        /* Styling untuk Latar Belakang */
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("Michie🖤😍.jpeg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #fff;
+            animation: fadeIn 2s ease-out;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Styling untuk Form */
+        form {
+            background-color: rgba(34, 34, 34, 0.85);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 500px;
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 3s ease-out;
+        }
+
+        /* Warna teks dengan bayangan untuk keterbacaan lebih baik */
+        h1,
+        h2,
+        h4,
+        label {
+            color: #f4f4f9;
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        /* Penyelarasan teks di tengah */
+        .center-text {
+            text-align: center;
+        }
+
+        /* Styling untuk List Data Diri */
+        .profile-info {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            font-size: 18px;
+            text-shadow: 1px 1px 3px #000;
+        }
+
+        .profile-info li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="overlay"></div>
+    <div class="logo">
+        <img src="logo jornal.jpg" alt="Logo">
+        <h1>Website Pembuat</h1>
+    </div>
+    <div>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="#">Contact</a>
+    </div>
+    </div>
+
+    <!-- Profil Pembuat -->
+    <h1 class="center-text"><b>Profil Pembuat</b></h1>
+    <h2 class="center-text"><b>Diky Ridho Pamungkas</b></h2>
+
+    <!-- Data Diri -->
+    <ul class="profile-info">
+        <li><strong>Nama:</strong> Diky Ridho Pamungkas</li>
+        <li><strong>Usia:</strong> Usia saya 16 tahun</li>
+        <li><strong>Alamat:</strong> perumahan bcp 2</li>
+        <li><strong>Email:</strong> dckycsply@gmail.com</li>
+        <li><strong>Nomor Telepon:</strong> 083072480796</li>
+        <li><strong>Hobi:</strong> ngoding tidur</li>
+    </ul>
+
+</body>
+
+</html>

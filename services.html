@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Sharing Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            background-color: #4f4;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #333;
+            color: #fff;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .logo img {
+            width: 40px;
+            margin-right: 10px;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: blue;
+        }
+
+        .search input {
+            padding: 8px 16px;
+            border: 2px solid #fff;
+            border-radius: 25px;
+            font-size: 16px;
+            width: 250px;
+            transition: width 0.3s ease;
+        }
+
+        .search input:focus {
+            width: 300px;
+            outline: none;
+            border-color: blue;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-image: url('logo.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            text-align: center;
+            padding: 120px 20px;
+            color: #35aae0;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            animation: fadeIn 2s ease-out;
+        }
+
+        .hero .btn {
+            padding: 10px 20px;
+            background-color: blue;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            animation: fadeIn 2.5s ease-out;
+        }
+
+        .hero .btn:hover {
+            background-color: gray;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Video Grid */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        .video-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .video-card img,
+        .video-card video {
+            width: 100%;
+            height: auto;
+        }
+
+        .video-card .title {
+            padding: 10px;
+            font-size: 18px;
+            background-color: #fff;
+            font-weight: bold;
+        }
+
+        .video-card .description {
+            padding: 10px;
+            font-size: 14px;
+            color: #777;
+            background-color: #fff;
+        }
+
+        /* Upload Section */
+        .upload-section {
+            background-color: #0400ff;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .upload-section h2 {
+            margin-bottom: 20px;
+            font-size: 32px;
+            color: #333;
+        }
+
+        .upload-section input[type="file"] {
+            margin: 20px 0;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #333;
+            border-radius: 5px;
+            transition: border-color 0.3s ease;
+        }
+
+        .upload-section input[type="file"]:hover {
+            border-color: #f4a500;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #dfd3d3;
+            color: #000;
+            text-align: center;
+            padding: 5px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .video-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .navbar a {
+                font-size: 14px;
+            }
+
+            .search input {
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="logo jornal.jpg" alt="Logo">
+            <h1>Website Jurnalistik</h1>
+        </div>
+        <div class="search">
+            <input type="text" id="searchInput" placeholder="Cari video..." onkeyup="filterVideos()">
+        </div>
+        <div class="user-options">
+            <a href="#">Upload</a>
+            <a href="INDEX.HTML">Login</a>
+            <a href="contact.html">Tentang kami</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h2>Selamat datang di Website Jurnalistik</h2>
+        <p>Tonton dan bagikan video favorit Anda dengan dunia.</p>
+        <a href="daftar.html" class="btn">Jelajahi Video</a>
+    </section>
+
+    <!-- Video Grid Section -->
+    <section class="video-grid">
+        <div class="video-card" data-title="Video 1">
+            <video class="video-player" controls>
+                <source src="cinematik.mov" type="video/mp4">
+                Browser Anda tidak mendukung pemutaran video.
+            </video>
+            <div class="title">Video 1</div>
+            <div class="description">Deskripsi singkat video 1...</div>
+        </div>
+        <div class="video-card" data-title="Video 2">
+            <video class="video-player" controls>
+                <source src="PUSDA.mp4" type="video/mp4">
+                Browser Anda tidak mendukung pemutaran video.
+            </video>
+            <div class="title">Video 2</div>
+            <div class="description">Deskripsi singkat video 2...</div>
+        </div>
+        <div class="video-card" data-title="Video 3">
+            <video class="video-player" controls>
+                <source src="final.mp4" type="video/mp4">
+                Browser Anda tidak mendukung pemutaran video.
+            </video>
+            <div class="title">Video 3</div>
+            <div class="description">Deskripsi singkat video 3...</div>
+        </div>
+        <div class="video-card" data-title="Video 4">
+            <video class="video-player" controls>
+                <source src="Video.mp4" type="video/mp4">
+                Browser Anda tidak mendukung pemutaran video.
+            </video>
+            <div class="title">Video 4</div>
+            <div class="description">Deskripsi singkat video 4...</div>
+        </div>
+        <div class="video-card" data-title="Video 1">
+            <video class="video-player" controls>
+                <source src="cinematik.mov" type="video/mp4">
+                Browser Anda tidak mendukung pemutaran video.
+            </video>
+            <div class="title">Video 1</div>
+            <div class="description">Deskripsi singkat video 1...</div>
+        </div>
+        <div class="video-card" data-title="Video 2">
+            <video class="video-player" controls>
+                <source src="PUSDA.mp4" type="video/mp4">
+                Browser Anda tidak mendukung pemutaran video.
+            </video>
+            <div class="title">Video 2</div>
+            <div class="description">Deskripsi singkat video 2...</div>
+        </div>
+        <div class="video-card" data-title="Video 3">
+            <video class="video-player" controls>
+                <source src="final.mp4" type="video/mp4">
+                Browser Anda tidak mendukung pemutaran video.
+            </video>
+            <div class="title">Video 3</div>
+            <div class="description">Deskripsi singkat video 3...</div>
+        </div>
+        <div class="video-card" data-title="Video 4">
+            <video class="video-player" controls>
+                <source src="Video.mp4" type="video/mp4">
+                Browser Anda tidak mendukung pemutaran video.
+            </video>
+            <div class="title">Video 4</div>
+            <div class="description">Deskripsi singkat video 4...</div>
+        </div>
+        <div class="video-card" data-title="Video 1">
+            <video class="video-player" controls>
+                <source src="cinematik.mov" type="video/mp4">
+                Browser Anda tidak mendukung pemutaran video.
+            </video>
+            <div class="title">Video 1</div>
+            <div class="description">Deskripsi singkat video 1...</div>
+        </div>
+        <div class="video-card" data-title="Video 2">
+            <video class="video-player" controls>
+                <source src="PUSDA.mp4" type="video/mp4">
+                Browser Anda tidak mendukung pemutaran video.
+            </video>
+            <div class="title">Video 2</div>
+            <div class="description">Deskripsi singkat video 2...</div>
+        </div>
+        <div class="video-card" data-title="Video 3">
+            <video class="video-player" controls>
+                <source src="final.mp4" type="video/mp4">
+                Browser Anda tidak mendukung pemutaran video.
+            </video>
+            <div class="title">Video 3</div>
+            <div class="description">Deskripsi singkat video 3...</div>
+        </div>
+        <div class="video-card" data-title="Video 4">
+            <video class="video-player" controls>
+                <source src="Video.mp4" type="video/mp4">
+                Browser Anda tidak mendukung pemutaran video.
+            </video>
+            <div class="title">Video 4</div>
+            <div class="description">Deskripsi singkat video 4...</div>
+        </div>
+        <div class="video-card" data-title="Video 1">
+            <video class="video-player" controls>
+                <source src="cinematik.mov" type="video/mp4">
+                Browser Anda tidak mendukung pemutaran video.
+            </video>
+            <div class="title">Video 1</div>
+            <div class="description">Deskripsi singkat video 1...</div>
+        </div>
+        <div class="video-card" data-title="Video 2">
+            <video class="video-player" controls>
+                <source src="PUSDA.mp4" type="video/mp4">
+                Browser Anda tidak mendukung pemutaran video.
+            </video>
+            <div class="title">Video 2</div>
+            <div class="description">Deskripsi singkat video 2...</div>
+        </div>
+        <div class="video-card" data-title="Video 3">
+            <video class="video-player" controls>
+                <source src="final.mp4" type="video/mp4">
+                Browser Anda tidak mendukung pemutaran video.
+            </video>
+            <div class="title">Video 3</div>
+            <div class="description">Deskripsi singkat video 3...</div>
+        </div>
+        <div class="video-card" data-title="Video 4">
+            <video class="video-player" controls>
+                <source src="Video.mp4" type="video/mp4">
+                Browser Anda tidak mendukung pemutaran video.
+            </video>
+            <div class="title">Video 4</div>
+            <div class="description">Deskripsi singkat video 4...</div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Website Jurnalistik SMKN 1 ciruas. Semua hak cipta dilindungi.</p>
+    </footer>
+
+    <script>
+        function filterVideos() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let videoCards = document.querySelectorAll('.video-card');
+
+            videoCards.forEach(function (card) {
+                let title = card.getAttribute('data-title').toLowerCase();
+                if (title.includes(input)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>
